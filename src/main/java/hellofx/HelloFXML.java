@@ -2,6 +2,7 @@ package hellofx;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -19,18 +20,24 @@ public class HelloFXML extends Application {
     @Override
     public void start(Stage primaryStage) {
         VBox root = new VBox();
-        Label label = new Label("Trying to connect to MySQL...");
+        Label label = new Label("Click the button to connect to MySQL...");
+        Button connectButton = new Button("Connect to MySQL");
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            label.setText("Connection successful!");
-        } catch (ClassNotFoundException | SQLException e) {
-            label.setText("Connection failed: " + e.getMessage());
-        }
+        connectButton.setOnAction(event -> {
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+                label.setText("Connection successful!");
+            } catch (ClassNotFoundException | SQLException e) {
+                label.setText("Connection failed: " + e.getMessage());
+            }
+        });
+
+        root.getChildren().addAll(label, connectButton);
 
         Scene scene = new Scene(root, 300, 200);
-        root.getChildren().add(label);
+        scene.getStylesheets().add(getClass().getResource("/hellofx/style.css").toExternalForm());
+
         primaryStage.setScene(scene);
         primaryStage.setTitle("JavaFX MySQL Test");
         primaryStage.show();
