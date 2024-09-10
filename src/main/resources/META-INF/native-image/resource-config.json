@@ -1,0 +1,30 @@
+{
+  "resources":{
+  "includes":[{
+      "pattern":"\\QMETA-INF/services/java.sql.Driver\\E"
+    }]},
+  "bundles":[
+    {
+      "name":"com.mysql.cj.LocalizedErrorMessages",
+      "locales":[
+        "", 
+        "und"
+      ]
+    }, 
+    {
+      "name":"com.sun.javafx.tk.quantum.QuantumMessagesBundle",
+      "locales":[
+        "", 
+        "und"
+      ]
+    }, 
+    {
+      "name":"com/sun/glass/ui/win/themes",
+      "locales":[
+        "", 
+        "en", 
+        "und"
+      ]
+    }
+  ]
+}

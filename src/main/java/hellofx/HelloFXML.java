@@ -15,7 +15,7 @@ public class HelloFXML extends Application {
 
     private static final String URL = "jdbc:mysql://localhost:3306/test";
     private static final String USER = "root";
-    private static final String PASSWORD = "pw123456";
+    private static final String PASSWORD = "";
 
     @Override
     public void start(Stage primaryStage) {
