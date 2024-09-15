@@ -13,19 +13,19 @@ import java.sql.SQLException;
 
 public class HelloFXML extends Application {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/test";
+    private static final String URL = "jdbc:mariadb://localhost:3306/test";
     private static final String USER = "root";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "pw123456";
 
     @Override
     public void start(Stage primaryStage) {
         VBox root = new VBox();
-        Label label = new Label("Click the button to connect to MySQL...");
-        Button connectButton = new Button("Connect to MySQL");
+        Label label = new Label("Click the button to connect to MariaDB..");
+        Button connectButton = new Button("Connect to MariaDB");
 
         connectButton.setOnAction(event -> {
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
+                Class.forName("org.mariadb.jdbc.Driver");
                 Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
                 label.setText("Connection successful!");
             } catch (ClassNotFoundException | SQLException e) {
@@ -39,7 +39,7 @@ public class HelloFXML extends Application {
         scene.getStylesheets().add(getClass().getResource("/hellofx/style.css").toExternalForm());
 
         primaryStage.setScene(scene);
-        primaryStage.setTitle("JavaFX MySQL Test");
+        primaryStage.setTitle("JavaFX MariaDB Test");
         primaryStage.show();
     }
 

@@ -1,20 +1,26 @@
 {
   "resources":{
-  "includes":[{
+  "includes":[
+    {
       "pattern":"\\QMETA-INF/services/java.sql.Driver\\E"
-    }]},
+    }, 
+    {
+      "pattern":"\\QMETA-INF/services/org.mariadb.jdbc.plugin.Codec\\E"
+    }, 
+    {
+      "pattern":"\\Qmariadb.properties\\E"
+    }
+  ]},
   "bundles":[
     {
       "name":"com.mysql.cj.LocalizedErrorMessages",
-      "locales":[
-        "", 
-        "und"
-      ]
+      "locales":["und"]
     }, 
     {
       "name":"com.sun.javafx.tk.quantum.QuantumMessagesBundle",
       "locales":[
         "", 
+        "de", 
         "und"
       ]
     }, 
@@ -22,6 +28,7 @@
       "name":"com/sun/glass/ui/win/themes",
       "locales":[
         "", 
+        "de", 
         "en", 
         "und"
       ]
