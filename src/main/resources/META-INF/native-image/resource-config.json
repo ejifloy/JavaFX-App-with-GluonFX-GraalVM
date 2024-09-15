@@ -6,24 +6,20 @@
   "bundles":[
     {
       "name":"com.mysql.cj.LocalizedErrorMessages",
-      "locales":[
-        "", 
-        "und"
-      ]
+      "locales":[""]
     }, 
     {
       "name":"com.sun.javafx.tk.quantum.QuantumMessagesBundle",
       "locales":[
         "", 
-        "und"
+        "de"
       ]
     }, 
     {
       "name":"com/sun/glass/ui/win/themes",
       "locales":[
         "", 
-        "en", 
-        "und"
+        "de"
       ]
     }
   ]

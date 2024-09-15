@@ -17,6 +17,7 @@
         <attach.version>4.0.21</attach.version>
         <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
         <gluonfx.maven.plugin.version>1.0.23</gluonfx.maven.plugin.version>
+        <gluonfx.target>host</gluonfx.target>
         <main.class>hellofx.HelloFXML</main.class>
         <app.identifier>${main.class}</app.identifier>
         <app.description>The MySQLJavaFXNative app</app.description>
@@ -37,11 +38,17 @@
             <version>${javafx.version}</version>
         </dependency>
 
-        <!-- MySQL JDBC driver -->
+        <!-- MySQL JDBC driver
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>3.0.5</version>
+        </dependency>-->
+
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
-            <version>9.0.0</version>
+            <version>8.3.0</version>
         </dependency>
     </dependencies>
 
@@ -76,6 +83,30 @@
                         <description>${app.description}</description>
                         <packageType>${package.type}</packageType>
                     </releaseConfiguration>
+                    <reflectionList>
+                        <!-- Establish access to listed classes during runtime
+                             for MySQL JDBC by Reflection Entries -->
+                        <list>com.mysql.cj.protocol.ExportControlled</list>
+                        <list>com.mysql.cj.protocol.a.NativeProtocol</list>
+                        <list>com.mysql.cj.jdbc.ConnectionImpl</list>
+                        <list>com.mysql.cj.jdbc.NonRegisteringDriver</list>
+                        <list>com.mysql.cj.NativeSession</list>
+                    </reflectionList>
+                    <resourcesList>
+                        <!-- Ensures resources within META-INF/services is available for JDBC-Driver -->
+                        <list>META-INF/services/*</list>
+                        <list>com/mysql/cj/configurations/*</list>
+                        <list>com/mysql/cj/*</list>
+                    </resourcesList>
+                    <bundlesList>
+                        <!-- Bindet die MySQL-Fehlermeldungen und andere sprachspezifische Ressourcen ein -->
+                        <list>com.mysql.cj.LocalizedErrorMessages</list>
+                    </bundlesList>
+                    <runtimeArgs>
+                        <!-- Additional runtime arguments for debugging -->
+                        <runtimeArg>--initialize-at-run-time=com.mysql.cj.jdbc</runtimeArg>
+                        <runtimeArg>--report-unsupported-elements-at-runtime</runtimeArg>
+                    </runtimeArgs>
                 </configuration>
             </plugin>
         </plugins>
